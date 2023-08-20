@@ -1,8 +1,10 @@
+import { prisma } from "@/db";
 import Link from "next/link";
 import { type ReactElement } from "react";
-import { faqs } from "../_data/faq";
 
-export function FAQ(): ReactElement {
+export async function FAQ(): Promise<ReactElement> {
+  const faqs = await prisma.faq.findMany();
+
   return (
     <div className='bg-white' id='faq'>
       <div className='mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8'>
@@ -25,10 +27,10 @@ export function FAQ(): ReactElement {
             {faqs.map((faq) => (
               <div key={faq.id}>
                 <dt className='text-base font-semibold leading-7 text-gray-900'>
-                  {faq.question}
+                  {faq.title}
                 </dt>
                 <dd className='mt-2 text-base leading-7 text-gray-600'>
-                  {faq.answer}
+                  {faq.content}
                 </dd>
               </div>
             ))}
