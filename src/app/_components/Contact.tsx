@@ -139,7 +139,10 @@ export function Contact(): ReactElement {
             </div>
             <p className='mt-4 text-sm leading-6 text-gray-500'>
               Wysyłając wiadomość, akceptuję{" "}
-              <Link href='#' className='font-semibold text-indigo-600'>
+              <Link
+                href='/privacy-policy'
+                className='font-semibold text-indigo-600'
+              >
                 politykę&nbsp;prywatności
               </Link>
               .

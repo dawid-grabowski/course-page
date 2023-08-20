@@ -15,7 +15,7 @@ export async function FAQ(): Promise<ReactElement> {
           Have a different question and can’t find the answer you’re looking
           for? Reach out to our support team by{" "}
           <Link
-            href='#'
+            href='mailto:kontakt@grabowskidawid.com'
             className='font-semibold text-indigo-600 hover:text-indigo-500'
           >
             sending us an email
