@@ -18,8 +18,8 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider
-      afterSignInUrl='/'
-      afterSignUpUrl='/'
+      afterSignInUrl='https://dawid-grabowski.com/'
+      afterSignUpUrl='https://dawid-grabowski.com/'
       localization={plPL}
       appearance={{
         variables: {
