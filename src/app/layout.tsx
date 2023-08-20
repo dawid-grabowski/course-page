@@ -18,6 +18,8 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider
+      afterSignInUrl='/'
+      afterSignUpUrl='/'
       localization={plPL}
       appearance={{
         variables: {
