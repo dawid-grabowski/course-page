@@ -59,7 +59,7 @@ export function Navbar(): ReactElement {
               Zaloguj się <span aria-hidden='true'>&rarr;</span>
             </Link>
           ) : (
-            <UserButton afterSignOutUrl='/' />
+            <UserButton />
           )}
         </div>
       </nav>
