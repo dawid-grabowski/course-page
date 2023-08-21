@@ -1,6 +1,6 @@
 "use client";
 
-import { UserButton, useUser } from "@clerk/nextjs";
+import { SignInButton, UserButton, useUser } from "@clerk/nextjs";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
@@ -52,12 +52,14 @@ export function Navbar(): ReactElement {
         </div>
         <div className='hidden lg:flex lg:flex-1 lg:justify-end'>
           {!isLoaded || !isSignedIn ? (
-            <Link
-              href='/login'
-              className='text-sm font-semibold leading-6 text-gray-900'
-            >
-              Zaloguj się <span aria-hidden='true'>&rarr;</span>
-            </Link>
+            <SignInButton>
+              <Link
+                href='/login'
+                className='text-sm font-semibold leading-6 text-gray-900'
+              >
+                Zaloguj się <span aria-hidden='true'>&rarr;</span>
+              </Link>
+            </SignInButton>
           ) : (
             <UserButton />
           )}

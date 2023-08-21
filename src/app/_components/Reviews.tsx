@@ -24,12 +24,13 @@ export function Reviews(): ReactElement {
                 </p>
               </blockquote>
               <figcaption className='mt-10 flex items-center gap-x-6'>
-                {/* <Image
+                <Image
                   className='h-14 w-14 rounded-full bg-gray-50'
                   src='/../../../public/mainPhoto.png'
                   alt=''
-                  fill
-                /> */}
+                  width={928}
+                  height={854}
+                />
                 <div className='text-base'>
                   <div className='font-semibold text-gray-900'>
                     Judith Black
