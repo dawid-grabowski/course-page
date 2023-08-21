@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { type ReactElement } from "react";
 
-export function NotFound(): ReactElement {
+export default function NotFound(): ReactElement {
   return (
     <>
       <main className='grid min-h-screen place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8'>
