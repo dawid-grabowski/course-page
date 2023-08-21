@@ -25,7 +25,7 @@ export default function RootLayout({
         },
       }}
     >
-      <html lang='pl-PL'>
+      <html lang='pl-PL' style={{ scrollBehavior: "smooth" }}>
         <body className={inter.className}>{children}</body>
       </html>
     </ClerkProvider>

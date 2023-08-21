@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { type ReactElement, type SVGProps } from "react";
+import { Link as ScrollLink } from "react-scroll";
 import { type JSX } from "react/jsx-runtime";
 import {
   Navigation as MainNavigation,
@@ -46,12 +49,13 @@ export function Footer(): ReactElement {
         >
           {navigation.main.map((item) => (
             <div key={item.name} className='pb-6'>
-              <Link
-                href={item.href}
-                className='text-sm leading-6 text-gray-600 hover:text-gray-900'
+              <ScrollLink
+                to={item.href}
+                className='cursor-pointer text-sm leading-6 text-gray-600 hover:text-gray-900'
+                offset={-50}
               >
                 {item.name}
-              </Link>
+              </ScrollLink>
             </div>
           ))}
         </nav>

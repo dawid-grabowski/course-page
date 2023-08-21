@@ -4,8 +4,8 @@ export type Navigation = {
 };
 
 export const navigation: Navigation[] = [
-  { name: "Kursy", href: "#courses" },
-  { name: "Opinie", href: "#reviews" },
-  { name: "FAQ", href: "#faq" },
-  { name: "Kontakt", href: "#contact" },
+  { name: "Kursy", href: "courses" },
+  { name: "Opinie", href: "reviews" },
+  { name: "FAQ", href: "faq" },
+  { name: "Kontakt", href: "contact" },
 ];
