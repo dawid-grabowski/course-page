@@ -53,7 +53,7 @@ export function Navbar(): ReactElement {
         <div className='hidden lg:flex lg:flex-1 lg:justify-end'>
           {!isLoaded || !isSignedIn ? (
             <Link
-              href='/Users/dawid/Desktop/programming/grabowskidawid/src/app/_components/Login'
+              href='/login'
               className='text-sm font-semibold leading-6 text-gray-900'
             >
               Zaloguj się <span aria-hidden='true'>&rarr;</span>
