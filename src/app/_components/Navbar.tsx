@@ -12,6 +12,10 @@ export function Navbar(): ReactElement {
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const { isLoaded, isSignedIn } = useUser();
 
+  if (!isLoaded || !isSignedIn) {
+    return <></>;
+  }
+
   return (
     <header className='absolute inset-x-0 top-0 z-50'>
       <nav
