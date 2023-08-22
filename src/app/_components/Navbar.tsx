@@ -5,6 +5,7 @@ import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState, type ReactElement } from "react";
 import { Link as ScrollLink } from "react-scroll";
 import { navigation, type Navigation } from "../_data/navigation";
@@ -12,6 +13,7 @@ import { navigation, type Navigation } from "../_data/navigation";
 export function Navbar(): ReactElement {
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const { isLoaded, isSignedIn } = useUser();
+  const pathname = usePathname();
 
   return (
     <header className='absolute inset-x-0 top-0 z-50'>
@@ -41,16 +43,34 @@ export function Navbar(): ReactElement {
           </button>
         </div>
         <div className='hidden lg:flex lg:gap-x-12'>
-          {navigation.map((item: Navigation) => (
-            <ScrollLink
-              key={item.name}
-              to={item.href}
-              offset={-50}
+          {navigation.map((item: Navigation) =>
+            pathname === "/" ? (
+              <ScrollLink
+                to={item.href}
+                offset={-50}
+                className='cursor-pointer text-sm font-semibold leading-6 text-gray-900'
+                key={item.name}
+              >
+                {item.name}
+              </ScrollLink>
+            ) : (
+              <Link
+                key={item.name}
+                href='/'
+                className='cursor-pointer text-sm font-semibold leading-6 text-gray-900'
+              >
+                {item.name}
+              </Link>
+            )
+          )}
+          {!isLoaded || !isSignedIn ? null : (
+            <Link
+              href='/my-courses'
               className='cursor-pointer text-sm font-semibold leading-6 text-gray-900'
             >
-              {item.name}
-            </ScrollLink>
-          ))}
+              Moje kursy
+            </Link>
+          )}
         </div>
         <div className='hidden lg:flex lg:flex-1 lg:justify-end'>
           {!isLoaded || !isSignedIn ? (
