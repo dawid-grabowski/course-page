@@ -1,10 +1,10 @@
 "use client";
 
+import emailjs from "@emailjs/browser";
 import { zodResolver } from "@hookform/resolvers/zod";
-import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
-import { type ReactElement } from "react";
+import { useRef, type ReactElement } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import contactPhoto from "../../../public/contactPhoto.jpeg";
@@ -27,8 +27,26 @@ export function Contact(): ReactElement {
     resolver: zodResolver(ContactFormSchema),
   });
 
+  const form = useRef<HTMLFormElement>(null);
+
   async function onSubmit(): Promise<void> {
-    await axios.get("");
+    if (!form.current) return;
+
+    await emailjs
+      .sendForm(
+        process.env.EMAILJS_SERVICE_ID ?? "",
+        process.env.EMAILJS_TEMPLATE_ID ?? "",
+        form.current,
+        process.env.EMAILJS_PUBLIC_KEY ?? ""
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
   }
 
   return (
@@ -43,7 +61,11 @@ export function Contact(): ReactElement {
           odpowiedzieć jak najszybciej.
         </p>
         <div className='mt-16 flex flex-col gap-16 sm:gap-y-20 lg:flex-row'>
-          <form onSubmit={handleSubmit(onSubmit)} className='lg:flex-auto'>
+          <form
+            ref={form}
+            onSubmit={handleSubmit(onSubmit)}
+            className='lg:flex-auto'
+          >
             <div className='grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2'>
               <div>
                 <label
