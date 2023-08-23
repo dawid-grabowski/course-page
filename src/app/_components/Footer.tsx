@@ -20,7 +20,7 @@ type FooterNavigation = {
   }[];
 };
 
-const navigation: FooterNavigation = {
+const footerNavigation: FooterNavigation = {
   main: mainNavigation,
   social: [
     {
@@ -47,7 +47,7 @@ export function Footer(): ReactElement {
           className='-mb-6 columns-2 sm:flex sm:justify-center sm:space-x-12'
           aria-label='Footer'
         >
-          {navigation.main.map((item) => (
+          {footerNavigation.main.map((item) => (
             <div key={item.name} className='pb-6'>
               <ScrollLink
                 to={item.href}
@@ -60,7 +60,7 @@ export function Footer(): ReactElement {
           ))}
         </nav>
         <div className='mt-10 flex justify-center space-x-10'>
-          {navigation.social.map((item) => (
+          {footerNavigation.social.map((item) => (
             <Link
               key={item.name}
               href={item.href}
