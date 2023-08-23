@@ -1,8 +1,10 @@
-import { type ReactElement } from "react";
+"use client";
 
 import { ChevronRightIcon } from "@heroicons/react/20/solid";
 import Image from "next/image";
 import Link from "next/link";
+import { type ReactElement } from "react";
+import { Link as ScrollLink } from "react-scroll";
 import mainPhoto from "../../../public/mainPhoto.png";
 
 export function Hero(): ReactElement {
@@ -63,22 +65,23 @@ export function Hero(): ReactElement {
               Hej, jestem Dawid!
             </h1>
             <p className='mt-6 text-lg leading-8 text-gray-600'>
-              Esse id magna consectetur fugiat non dolor in ad laboris magna
-              laborum ea consequat. Nisi irure aliquip nisi adipisicing veniam
-              voluptate id. In veniam incididunt ex veniam adipisicing sit.
+              Na codzień programuję używając Next.js i TypeScript. Studiuję
+              Software Development na International University of Applied
+              Sciences. W wolnym czasie prowadzę swoje projekty oraz tworzę
+              treści na YouTube i staram się przekazywać swoją wiedzę innym.
             </p>
             <div className='mt-10 flex items-center gap-x-6'>
-              <Link
-                href='#'
-                className='rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+              <ScrollLink
+                to='courses'
+                className='cursor-pointer rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
               >
-                Get started
-              </Link>
+                Zobacz więcej
+              </ScrollLink>
               <Link
                 href='#'
                 className='text-sm font-semibold leading-6 text-gray-900'
               >
-                Learn more <span aria-hidden='true'>→</span>
+                Skontaktuj się ze mną <span aria-hidden='true'>→</span>
               </Link>
             </div>
           </div>
