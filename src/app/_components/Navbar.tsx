@@ -1,6 +1,6 @@
 "use client";
 
-import { SignInButton, UserButton, useUser } from "@clerk/nextjs";
+import { SignInButton, SignUpButton, UserButton, useUser } from "@clerk/nextjs";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
@@ -72,13 +72,26 @@ export function Navbar(): ReactElement {
             </Link>
           )}
         </div>
-        <div className='hidden lg:flex lg:flex-1 lg:justify-end'>
+        <div className='hidden lg:flex lg:flex-1 gap-3 lg:justify-end'>
           {!isLoaded || !isSignedIn ? (
-            <SignInButton>
-              <button className='text-sm font-semibold leading-6 text-gray-900'>
-                Zaloguj się <span aria-hidden='true'>&rarr;</span>
-              </button>
-            </SignInButton>
+            <>
+              <SignInButton>
+                <button
+                  type='button'
+                  className='rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+                >
+                  Logowanie
+                </button>
+              </SignInButton>
+              <SignUpButton>
+                <button
+                  type='button'
+                  className='rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50'
+                >
+                  Rejestracja
+                </button>
+              </SignUpButton>
+            </>
           ) : (
             <UserButton />
           )}

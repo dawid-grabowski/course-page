@@ -77,12 +77,12 @@ export function Hero(): ReactElement {
               >
                 Zobacz więcej
               </ScrollLink>
-              <Link
-                href='#'
-                className='text-sm font-semibold leading-6 text-gray-900'
+              <ScrollLink
+                to='contact'
+                className='cursor-pointer text-sm font-semibold leading-6 text-gray-900'
               >
                 Skontaktuj się ze mną <span aria-hidden='true'>→</span>
-              </Link>
+              </ScrollLink>
             </div>
           </div>
           <div className='mt-16 sm:mt-24 lg:mt-0 lg:flex-shrink-0 lg:flex-grow'>
