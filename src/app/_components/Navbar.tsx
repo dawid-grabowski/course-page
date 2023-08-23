@@ -8,6 +8,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, type ReactElement } from "react";
 import { Link as ScrollLink } from "react-scroll";
+import logo from "../../../public/dg_logo.svg";
 import { navigation, type Navigation } from "../_data/navigation";
 
 export function Navbar(): ReactElement {
@@ -24,12 +25,13 @@ export function Navbar(): ReactElement {
         <div className='flex lg:flex-1'>
           <Link href='/' className='-m-1.5 p-1.5'>
             <span className='sr-only'>Dawid Grabowski - GrabIT</span>
-            {/* <Image
-              className='h-8 w-auto'
-              src='https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600'
+            <Image
+              className='h-12 w-auto'
+              src={logo}
               alt=''
-              fill
-            /> */}
+              height={500}
+              width={500}
+            />
           </Link>
         </div>
         <div className='flex lg:hidden'>
@@ -109,10 +111,11 @@ export function Navbar(): ReactElement {
             <Link href='/' className='-m-1.5 p-1.5'>
               <span className='sr-only'>Dawid Grabowski - GrabIT</span>
               <Image
-                className='h-8 w-auto'
-                src='https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600'
+                className='h-12 w-auto'
+                src={logo}
                 alt=''
-                fill
+                height={500}
+                width={500}
               />
             </Link>
             <button
@@ -139,11 +142,18 @@ export function Navbar(): ReactElement {
               </div>
               <div className='py-6'>
                 {!isLoaded || !isSignedIn ? (
-                  <SignInButton>
-                    <button className='-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50'>
-                      Zaloguj się
-                    </button>
-                  </SignInButton>
+                  <>
+                    <SignInButton>
+                      <button className='-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50'>
+                        Zaloguj się
+                      </button>
+                    </SignInButton>
+                    <SignUpButton>
+                      <button className='-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50'>
+                        Zarejestruj się
+                      </button>
+                    </SignUpButton>
+                  </>
                 ) : (
                   <UserButton />
                 )}
