@@ -48,7 +48,7 @@ export function Navbar(): ReactElement {
               <ScrollLink
                 to={item.href}
                 offset={-50}
-                className='cursor-pointer text-sm font-semibold leading-6 text-gray-900'
+                className='cursor-pointer font-medium text-sm leading-6 text-gray-600 hover:text-gray-900'
                 key={item.name}
               >
                 {item.name}
@@ -57,7 +57,7 @@ export function Navbar(): ReactElement {
               <Link
                 key={item.name}
                 href='/'
-                className='cursor-pointer text-sm font-semibold leading-6 text-gray-900'
+                className='cursor-pointer font-medium text-sm leading-6 text-gray-600 hover:text-gray-900'
               >
                 {item.name}
               </Link>
