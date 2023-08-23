@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { type ReactElement } from "react";
 import { getFaqs } from "../_utlis/getFaqs";
-import { Faq } from "../api/faqs/route";
 
 export async function FAQ(): Promise<ReactElement> {
   const { result } = await getFaqs();
@@ -25,7 +24,7 @@ export async function FAQ(): Promise<ReactElement> {
         </p>
         <div className='mt-20'>
           <dl className='space-y-16 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:gap-y-16 sm:space-y-0 lg:grid-cols-3 lg:gap-x-10'>
-            {result.map((faq: Faq) => (
+            {result.map((faq) => (
               <div key={faq.id}>
                 <dt className='text-base font-semibold leading-7 text-gray-900'>
                   {faq.title}
