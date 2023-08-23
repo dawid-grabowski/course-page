@@ -16,7 +16,7 @@ export default function Home(): ReactElement {
       <Hero />
       <Courses />
       <ContentSection />
-      <Reviews />
+      {/* <Reviews /> */}
       <CTA />
       <FAQ />
       <Contact />
