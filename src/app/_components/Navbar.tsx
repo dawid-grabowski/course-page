@@ -68,7 +68,7 @@ export function Navbar(): ReactElement {
           {!isLoaded || !isSignedIn ? null : (
             <Link
               href='/my-courses'
-              className='cursor-pointer text-sm font-semibold leading-6 text-gray-900'
+              className='cursor-pointer font-medium text-sm leading-6 text-gray-600 hover:text-gray-900'
             >
               Moje kursy
             </Link>
@@ -139,6 +139,14 @@ export function Navbar(): ReactElement {
                     {item.name}
                   </Link>
                 ))}
+                {!isLoaded || !isSignedIn ? null : (
+                  <Link
+                    href='/my-courses'
+                    className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50'
+                  >
+                    Moje kursy
+                  </Link>
+                )}
               </div>
               <div className='py-6'>
                 {!isLoaded || !isSignedIn ? (
