@@ -2,7 +2,7 @@ import { cache } from "react";
 import { APP_URL } from "../_data/url";
 import { ApiResult } from "../_types/ApiResult";
 
-export const REVALIDATE_DATA_MS = 3600;
+export const REVALIDATE_DATA_MS = 15;
 
 export type Faq = {
   id: number;
