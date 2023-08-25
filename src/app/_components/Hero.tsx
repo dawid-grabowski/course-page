@@ -67,8 +67,8 @@ export function Hero(): ReactElement {
             <p className='mt-6 text-lg leading-8 text-gray-600'>
               Na codzień programuję używając Next.js i TypeScript. Studiuję
               Software Development na International University of Applied
-              Sciences. W wolnym czasie prowadzę swoje projekty oraz tworzę
-              treści na YouTube i staram się przekazywać swoją wiedzę innym.
+              Sciences. W wolnym czasie prowadzę swoje projekty, tworzę treści
+              na YouTube i staram się przekazywać swoją wiedzę innym.
             </p>
             <div className='mt-10 flex items-center gap-x-6'>
               <ScrollLink

@@ -1,43 +1,150 @@
+"use client";
+
+import { Tab } from "@headlessui/react";
 import Image from "next/image";
-import { type ReactElement } from "react";
+import { Fragment, type ReactElement } from "react";
 import typescriptCourse from "../../../public/typescript-course.png";
+
+const tabs = [
+  {
+    name: "Design",
+    features: [
+      {
+        name: "Adaptive and modular",
+        description:
+          "The Organize base set allows you to configure and evolve your setup as your items and habits change. The included trays and optional add-ons are easily rearranged to achieve that perfect setup.",
+        imageSrc: typescriptCourse,
+        imageAlt:
+          "Maple organizer base with slots, supporting white polycarbonate trays of various sizes.",
+      },
+    ],
+  },
+  {
+    name: "Material",
+    features: [
+      {
+        name: "Natural wood options",
+        description:
+          "Organize has options for rich walnut and bright maple base materials. Accent your desk with a contrasting material, or match similar woods for a calm and cohesive look. Every base is hand sanded and finished.",
+        imageSrc:
+          "https://tailwindui.com/img/ecommerce-images/product-feature-06-detail-02.jpg",
+        imageAlt:
+          "Walnut organizer base with pen, sticky note, phone, and bin trays, next to modular drink coaster attachment.",
+      },
+    ],
+  },
+  {
+    name: "Considerations",
+    features: [
+      {
+        name: "Helpful around the home",
+        description:
+          "Our customers use Organize throughout the house to bring efficiency to many daily routines. Enjoy Organize in your workspace, kitchen, living room, entry way, garage, and more. We can't wait to see how you'll use it!",
+        imageSrc:
+          "https://tailwindui.com/img/ecommerce-images/product-feature-06-detail-03.jpg",
+        imageAlt:
+          "Walnut organizer base with white polycarbonate trays in the kitchen with various kitchen utensils.",
+      },
+    ],
+  },
+  {
+    name: "Included",
+    features: [
+      {
+        name: "Everything you'll need",
+        description:
+          "The Organize base set includes the pen, phone, small, and large trays to help you group all your essential items. Expand your set with the drink coaster and headphone stand add-ons.",
+        imageSrc:
+          "https://tailwindui.com/img/ecommerce-images/product-feature-06-detail-04.jpg",
+        imageAlt:
+          "Walnut organizer system on black leather desk mat on top of white desk.",
+      },
+    ],
+  },
+];
+
+function classNames(...classes: string[]) {
+  return classes.filter(Boolean).join(" ");
+}
 
 export function Courses(): ReactElement {
   return (
-    <div className='bg-white' id='courses'>
-      <div className='mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl'>
-        <div className='relative overflow-hidden rounded-lg lg:h-96'>
-          <div className='absolute inset-0'>
-            <Image
-              src={typescriptCourse}
-              alt=''
-              className='h-full w-full object-cover object-center'
-              height={875}
-              width={1400}
-            />
+    <div className='bg-white'>
+      <section
+        aria-labelledby='features-heading'
+        className='mx-auto max-w-7xl py-32 sm:px-2 lg:px-8'
+      >
+        <div className='mx-auto max-w-2xl px-4 lg:max-w-none lg:px-0'>
+          <div className='max-w-3xl'>
+            <h2
+              id='features-heading'
+              className='text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl'
+            >
+              Technical Specifications
+            </h2>
+            <p className='mt-4 text-gray-500'>
+              The Organize modular system offers endless options for arranging
+              your favorite and most used items. Keep everything at reach and in
+              its place, while dressing up your workspace.
+            </p>
           </div>
-          <div aria-hidden='true' className='relative h-96 w-full lg:hidden' />
-          <div aria-hidden='true' className='relative h-32 w-full lg:hidden' />
-          <div className='absolute inset-x-0 bottom-0 rounded-bl-lg rounded-br-lg bg-indigo-700 p-6 backdrop-blur backdrop-filter sm:flex sm:items-center sm:justify-between lg:inset-x-auto lg:inset-y-0 lg:w-96 lg:flex-col lg:items-start lg:rounded-br-none lg:rounded-tl-lg'>
-            <div>
-              <h2 className='text-xl font-bold text-white'>
-                TypeScript - Kompletny kurs 2023
-              </h2>
-              <p className='mt-1 text-sm text-gray-300'>
-                Czysty JavaScript to już przeżytek, a umyślny jego wybór to
-                zachaczanie o pewnego rodzaju skazanie siebie na trud i
-                problemy. JS został wyparty o tyle, że praktycznie każda oferta
-                z nim związana wymaga jeszcze znajomości TS&apos;a. Dlatego
-                jeśli chcesz, aby każda twoja linijka kodu była bezpieczna, a
-                umysł spokojniejszy to ten kurs jest dla Ciebie.
-              </p>
+
+          <Tab.Group as='div' className='mt-4'>
+            <div className='-mx-4 flex overflow-x-auto sm:mx-0'>
+              <div className='flex-auto border-b border-gray-200 px-4 sm:px-0'>
+                <Tab.List className='-mb-px flex space-x-10'>
+                  {tabs.map((tab) => (
+                    <Tab
+                      key={tab.name}
+                      className={({ selected }) =>
+                        classNames(
+                          selected
+                            ? "border-indigo-500 text-indigo-600"
+                            : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700",
+                          "whitespace-nowrap border-b-2 py-6 text-sm font-medium"
+                        )
+                      }
+                    >
+                      {tab.name}
+                    </Tab>
+                  ))}
+                </Tab.List>
+              </div>
             </div>
-            <button className='mt-6 flex flex-shrink-0 items-center justify-center rounded-md border border-white border-opacity-25 bg-white bg-opacity-0 px-4 py-3 text-base font-medium text-white hover:bg-opacity-10 sm:ml-8 sm:mt-0 lg:ml-0 lg:w-full'>
-              Przejdź do kursu
-            </button>
-          </div>
+
+            <Tab.Panels as={Fragment}>
+              {tabs.map((tab) => (
+                <Tab.Panel key={tab.name} className='space-y-16 pt-10 lg:pt-16'>
+                  {tab.features.map((feature) => (
+                    <div
+                      key={feature.name}
+                      className='flex flex-col-reverse lg:grid lg:grid-cols-12 lg:gap-x-8'
+                    >
+                      <div className='mt-6 lg:col-span-5 lg:mt-0'>
+                        <h3 className='text-lg font-medium text-gray-900'>
+                          {feature.name}
+                        </h3>
+                        <p className='mt-2 text-sm text-gray-500'>
+                          {feature.description}
+                        </p>
+                      </div>
+                      <div className='lg:col-span-7'>
+                        <div className='aspect-h-1 aspect-w-2 overflow-hidden rounded-lg bg-gray-100 sm:aspect-h-2 sm:aspect-w-5'>
+                          <Image
+                            src={feature.imageSrc}
+                            alt={feature.imageAlt}
+                            className='object-cover object-center'
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </Tab.Panel>
+              ))}
+            </Tab.Panels>
+          </Tab.Group>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

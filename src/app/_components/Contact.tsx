@@ -242,13 +242,6 @@ export function Contact(): ReactElement {
               fill
             /> */}
             <figure className='mt-10'>
-              <blockquote className='text-lg font-semibold leading-8 text-gray-900'>
-                <p>
-                  “Tu miał być jakiś gruby cytat. Cytatu nie będzie bo nie
-                  potrafię w sztukę ale umiem programować, chociaż programowanie
-                  to trochę sztuka - nie?”
-                </p>
-              </blockquote>
               <figcaption className='mt-10 flex gap-x-6'>
                 <Image
                   src={contactPhoto}

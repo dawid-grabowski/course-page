@@ -51,7 +51,7 @@ export default function RootLayout({
           <meta name='theme-color' content='#ffffff' />
         </head>
         <body className={inter.className}>
-          <Navbar />
+          {/* <Navbar /> */}
           {children}
         </body>
       </html>

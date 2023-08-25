@@ -11,16 +11,17 @@ import { Reviews } from "./_components/Reviews";
 
 export default function Home(): ReactElement {
   return (
-    <main className='bg-white'>
-      <Navbar />
+    <main className='bg-white flex items-center justify-center h-screen'>
+      Przepraszamy, strona w budowie.
+      {/* <Navbar />
       <Hero />
       <Courses />
       <ContentSection />
-      {/* <Reviews /> */}
+      <Reviews />
       <CTA />
       <FAQ />
       <Contact />
-      <Footer />
+      <Footer /> */}
     </main>
   );
 }
