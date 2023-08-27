@@ -2,6 +2,8 @@
 
 import emailjs from "@emailjs/browser";
 import { zodResolver } from "@hookform/resolvers/zod";
+import clsx from "clsx";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useRef, useState, type ReactElement } from "react";
@@ -28,7 +30,12 @@ type FormStatus = "idle" | "loading" | "success" | "error";
 export function Contact(): ReactElement {
   const [formStatus, setFormStatus] = useState<FormStatus>("idle");
 
-  const { register, handleSubmit, reset } = useForm<ContactForm>({
+  const {
+    formState: { errors },
+    register,
+    handleSubmit,
+    reset,
+  } = useForm<ContactForm>({
     resolver: zodResolver(ContactFormSchema),
   });
 
@@ -47,13 +54,11 @@ export function Contact(): ReactElement {
         process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY ?? ""
       )
       .then(
-        (result) => {
+        () => {
           setFormStatus("success");
-          console.log(result.text);
         },
-        (error) => {
+        () => {
           setFormStatus("error");
-          console.log(error.text);
         }
       )
       .finally(() => {
@@ -62,12 +67,23 @@ export function Contact(): ReactElement {
   }
 
   return (
-    <div className='isolate bg-white px-6 py-24 sm:py-32 lg:px-8' id='contact'>
+    <motion.div
+      initial={{ opacity: 0, y: 200 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{
+        type: "spring",
+        stiffness: 100,
+        damping: 20,
+      }}
+      viewport={{ once: true }}
+      className='isolate bg-neutral-900 px-6 py-24 sm:py-32 lg:px-8'
+      id='contact'
+    >
       <div className='mx-auto max-w-xl lg:max-w-4xl'>
-        <h2 className='text-4xl font-bold tracking-tight text-gray-900'>
+        <h2 className='text-4xl font-bold tracking-tight text-zinc-200'>
           Masz pytanie? Użyj formularza poniżej!
         </h2>
-        <p className='mt-2 text-lg leading-8 text-gray-600'>
+        <p className='mt-2 text-lg leading-8 text-zinc-400'>
           Pamiętaj, że nie ma głupich pytań. Jeśli masz jakiekolwiek wątpliwości
           lub chcesz się czegoś dowiedzieć, napisz do mnie. Postaram się
           odpowiedzieć jak najszybciej.
@@ -82,9 +98,9 @@ export function Contact(): ReactElement {
               <div>
                 <label
                   htmlFor='firstName'
-                  className='block text-sm font-semibold leading-6 text-gray-900'
+                  className='block text-sm font-semibold leading-6 text-zinc-200'
                 >
-                  Imię
+                  Imię <span className='text-red-700'>*</span>
                 </label>
                 <div className='mt-2.5'>
                   <input
@@ -93,16 +109,25 @@ export function Contact(): ReactElement {
                     placeholder='np. Jan'
                     id='firstName'
                     autoComplete='given-name'
-                    className='block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+                    className={clsx(
+                      errors.firstName?.message
+                        ? "block bg-neutral-800 w-full rounded-md border-0 px-3.5 py-2 text-zinc-400 shadow-sm ring-1 ring-inset ring-red-700 placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-red-700 sm:text-sm sm:leading-6"
+                        : "block bg-neutral-800 w-full rounded-md border-0 px-3.5 py-2 text-zinc-400 shadow-sm ring-1 ring-inset ring-neutral-700 placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-indigo-700 sm:text-sm sm:leading-6"
+                    )}
                   />
+                  {errors.firstName?.message ? (
+                    <p className='mt-2 text-sm text-red-700'>
+                      {errors.firstName.message}
+                    </p>
+                  ) : null}
                 </div>
               </div>
               <div>
                 <label
                   htmlFor='lastName'
-                  className='block text-sm font-semibold leading-6 text-gray-900'
+                  className='block text-sm font-semibold leading-6 text-zinc-200'
                 >
-                  Nazwisko
+                  Nazwisko <span className='text-red-700'>*</span>
                 </label>
                 <div className='mt-2.5'>
                   <input
@@ -111,16 +136,25 @@ export function Contact(): ReactElement {
                     placeholder='np. Kowalski'
                     id='lastName'
                     autoComplete='family-name'
-                    className='block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+                    className={clsx(
+                      errors.lastName?.message
+                        ? "block bg-neutral-800 w-full rounded-md border-0 px-3.5 py-2 text-zinc-400 shadow-sm ring-1 ring-inset ring-red-700 placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-red-700 sm:text-sm sm:leading-6"
+                        : "block bg-neutral-800 w-full rounded-md border-0 px-3.5 py-2 text-zinc-400 shadow-sm ring-1 ring-inset ring-neutral-700 placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-indigo-700 sm:text-sm sm:leading-6"
+                    )}
                   />
+                  {errors.lastName?.message ? (
+                    <p className='mt-2 text-sm text-red-700'>
+                      {errors.lastName.message}
+                    </p>
+                  ) : null}
                 </div>
               </div>
               <div>
                 <label
                   htmlFor='title'
-                  className='block text-sm font-semibold leading-6 text-gray-900'
+                  className='block text-sm font-semibold leading-6 text-zinc-200'
                 >
-                  Tytuł
+                  Tytuł <span className='text-red-700'>*</span>
                 </label>
                 <div className='mt-2.5'>
                   <input
@@ -128,16 +162,25 @@ export function Contact(): ReactElement {
                     {...register("title")}
                     placeholder='np. Dokąd nocą tupta jeż?'
                     type='text'
-                    className='block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+                    className={clsx(
+                      errors.title?.message
+                        ? "block bg-neutral-800 w-full rounded-md border-0 px-3.5 py-2 text-zinc-400 shadow-sm ring-1 ring-inset ring-red-700 placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-red-700 sm:text-sm sm:leading-6"
+                        : "block bg-neutral-800 w-full rounded-md border-0 px-3.5 py-2 text-zinc-400 shadow-sm ring-1 ring-inset ring-neutral-700 placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-indigo-700 sm:text-sm sm:leading-6"
+                    )}
                   />
+                  {errors.title?.message ? (
+                    <p className='mt-2 text-sm text-red-700'>
+                      {errors.title.message}
+                    </p>
+                  ) : null}
                 </div>
               </div>
               <div>
                 <label
                   htmlFor='email'
-                  className='block text-sm font-semibold leading-6 text-gray-900'
+                  className='block text-sm font-semibold leading-6 text-zinc-200'
                 >
-                  Email
+                  Email <span className='text-red-700'>*</span>
                 </label>
                 <div className='mt-2.5'>
                   <input
@@ -145,33 +188,50 @@ export function Contact(): ReactElement {
                     type='email'
                     {...register("email")}
                     placeholder='np. jan.kowalski@gmail.com'
-                    className='block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+                    className={clsx(
+                      errors.email?.message
+                        ? "block bg-neutral-800 w-full rounded-md border-0 px-3.5 py-2 text-zinc-400 shadow-sm ring-1 ring-inset ring-red-700 placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-red-700 sm:text-sm sm:leading-6"
+                        : "block bg-neutral-800 w-full rounded-md border-0 px-3.5 py-2 text-zinc-400 shadow-sm ring-1 ring-inset ring-neutral-700 placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-indigo-700 sm:text-sm sm:leading-6"
+                    )}
                   />
+                  {errors.email?.message ? (
+                    <p className='mt-2 text-sm text-red-700'>
+                      {errors.email.message}
+                    </p>
+                  ) : null}
                 </div>
               </div>
               <div className='sm:col-span-2'>
                 <label
                   htmlFor='message'
-                  className='block text-sm font-semibold leading-6 text-gray-900'
+                  className='block text-sm font-semibold leading-6 text-zinc-200'
                 >
-                  Treść wiadomości
+                  Treść wiadomości <span className='text-red-700'>*</span>
                 </label>
                 <div className='mt-2.5'>
                   <textarea
                     id='message'
                     {...register("message")}
-                    placeholder='np. Cześć Dawid, chciałbym się dowiedzieć gdzie tuptają jeże w nocy? Wiem, że może to głupie pytanie ale chyba programista powinien znać odpowiedź na to pytanie? Z góry dzięki. Janek.'
+                    placeholder='np. Cześć Dawid, chciałbym się dowiedzieć gdzie tuptają jeże w nocy? Wiem, że może to głupie ale chyba programista powinien znać odpowiedź na to pytanie? Z góry dzięki. Janek.'
                     rows={6}
-                    className='block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
-                    defaultValue={""}
+                    className={clsx(
+                      errors.message?.message
+                        ? "block bg-neutral-800 w-full rounded-md border-0 px-3.5 py-2 text-zinc-400 shadow-sm ring-1 ring-inset ring-red-700 placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-red-700 sm:text-sm sm:leading-6"
+                        : "block bg-neutral-800 w-full rounded-md border-0 px-3.5 py-2 text-zinc-400 shadow-sm ring-1 ring-inset ring-neutral-700 placeholder:text-zinc-600 focus:ring-2 focus:ring-inset focus:ring-indigo-700 sm:text-sm sm:leading-6"
+                    )}
                   />
+                  {errors.message?.message ? (
+                    <p className='mt-2 text-sm text-red-700'>
+                      {errors.message.message}
+                    </p>
+                  ) : null}
                 </div>
               </div>
             </div>
             <div className='mt-10'>
               <button
                 type='submit'
-                className='flex items-center justify-center w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+                className='flex items-center justify-center w-full rounded-md bg-indigo-700 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-600 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-700'
               >
                 {formStatus === "loading" ? (
                   <div role='status'>
@@ -227,7 +287,7 @@ export function Contact(): ReactElement {
               Wysyłając wiadomość, akceptuję{" "}
               <Link
                 href='/privacy-policy'
-                className='font-semibold text-indigo-600'
+                className='font-semibold text-indigo-700 hover:text-indigo-600 transition-colors'
               >
                 politykę&nbsp;prywatności
               </Link>
@@ -249,10 +309,10 @@ export function Contact(): ReactElement {
                   className='h-12 w-12 flex-none rounded-full bg-gray-50'
                 />
                 <div>
-                  <div className='text-base font-semibold text-gray-900'>
+                  <div className='text-base font-semibold text-zinc-200'>
                     Dawid Grabowski
                   </div>
-                  <div className='text-sm leading-6 text-gray-600'>
+                  <div className='text-sm leading-6 text-zinc-400'>
                     Frontend Developer
                   </div>
                 </div>
@@ -261,6 +321,6 @@ export function Contact(): ReactElement {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

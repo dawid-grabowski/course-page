@@ -3,41 +3,61 @@
 import { SignInButton, SignUpButton, UserButton, useUser } from "@clerk/nextjs";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import Image from "next/image";
+import clsx from "clsx";
+import { motion } from "framer-motion";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useState, type ReactElement } from "react";
-import { Link as ScrollLink } from "react-scroll";
-import logo from "../../../public/dg_logo.svg";
+import { useEffect, useState, type ReactElement } from "react";
 import { navigation, type Navigation } from "../_data/navigation";
 
 export function Navbar(): ReactElement {
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
+  const [navbarStyle, setNavbarStyle] = useState<string>("fixed");
   const { isLoaded, isSignedIn } = useUser();
-  const pathname = usePathname();
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    window.location.pathname === "/register"
+      ? setNavbarStyle("fixed")
+      : setNavbarStyle("sticky");
+
+    console.log(window.location.pathname);
+  }, []);
 
   return (
-    <header className='absolute inset-x-0 top-0 z-50'>
-      <nav
-        className='flex items-center justify-between p-6 lg:px-8'
+    <header
+      className={clsx(
+        navbarStyle === "fixed" ? "sticky" : "fixed",
+        "inset-x-0 top-0 z-50 backdrop-filter backdrop-blur-lg"
+      )}
+    >
+      <motion.nav
+        initial={{ y: 10, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{
+          type: "spring",
+          stiffness: 200,
+          damping: 20,
+        }}
+        className='mx-auto max-w-7xl flex items-center justify-between h-16 lg:px-8'
         aria-label='Global'
       >
         <div className='flex lg:flex-1'>
           <Link href='/' className='-m-1.5 p-1.5'>
             <span className='sr-only'>Dawid Grabowski - GrabIT</span>
-            <Image
-              className='h-12 w-auto'
+            {/* <Image
+              className='h-10 w-auto'
               src={logo}
               alt=''
               height={500}
               width={500}
-            />
+            /> */}
           </Link>
         </div>
         <div className='flex lg:hidden'>
           <button
             type='button'
-            className='-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700'
+            className='-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-slate-100'
             onClick={() => setMobileMenuOpen(true)}
           >
             <span className='sr-only'>Otwórz menu główne</span>
@@ -45,34 +65,16 @@ export function Navbar(): ReactElement {
           </button>
         </div>
         <div className='hidden lg:flex lg:gap-x-12'>
-          {navigation.map((item: Navigation) =>
-            pathname === "/" ? (
-              <ScrollLink
-                to={item.href}
-                offset={-50}
-                className='cursor-pointer font-medium text-sm leading-6 text-gray-600 hover:text-gray-900'
-                key={item.name}
-              >
-                {item.name}
-              </ScrollLink>
-            ) : (
-              <Link
-                key={item.name}
-                href='/'
-                className='cursor-pointer font-medium text-sm leading-6 text-gray-600 hover:text-gray-900'
-              >
-                {item.name}
-              </Link>
-            )
-          )}
-          {!isLoaded || !isSignedIn ? null : (
+          {navigation.map((item: Navigation) => (
             <Link
-              href='/my-courses'
-              className='cursor-pointer font-medium text-sm leading-6 text-gray-600 hover:text-gray-900'
+              key={item.id}
+              href={item.href}
+              target={item.target}
+              className='transition-colors cursor-pointer font-medium text-sm leading-6 text-slate-200 hover:text-slate-300'
             >
-              Moje kursy
+              {item.name}
             </Link>
-          )}
+          ))}
         </div>
         <div className='hidden lg:flex lg:flex-1 gap-3 lg:justify-end'>
           {!isLoaded || !isSignedIn ? (
@@ -80,7 +82,7 @@ export function Navbar(): ReactElement {
               <SignInButton>
                 <button
                   type='button'
-                  className='rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+                  className='transition-colors rounded-md bg-indigo-700 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
                 >
                   Logowanie
                 </button>
@@ -88,7 +90,7 @@ export function Navbar(): ReactElement {
               <SignUpButton>
                 <button
                   type='button'
-                  className='rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50'
+                  className='backdrop-filter backdrop-blur-lg transition-colors rounded-md px-3.5 py-2.5 text-sm font-semibold text-neutral-300 shadow-sm ring-1 ring-inset ring-neutral-300 hover:bg-neutral-800'
                 >
                   Rejestracja
                 </button>
@@ -98,7 +100,7 @@ export function Navbar(): ReactElement {
             <UserButton />
           )}
         </div>
-      </nav>
+      </motion.nav>
       <Dialog
         as='div'
         className='lg:hidden'
@@ -110,13 +112,13 @@ export function Navbar(): ReactElement {
           <div className='flex items-center justify-between'>
             <Link href='/' className='-m-1.5 p-1.5'>
               <span className='sr-only'>Dawid Grabowski - GrabIT</span>
-              <Image
+              {/* <Image
                 className='h-12 w-auto'
                 src={logo}
                 alt=''
                 height={500}
                 width={500}
-              />
+              /> */}
             </Link>
             <button
               type='button'
@@ -132,32 +134,25 @@ export function Navbar(): ReactElement {
               <div className='space-y-2 py-6'>
                 {navigation.map((item: Navigation) => (
                   <Link
-                    key={item.name}
+                    key={item.id}
                     href={item.href}
-                    className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50'
+                    target={item.target}
+                    className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-slate-300 hover:bg-gray-50'
                   >
                     {item.name}
                   </Link>
                 ))}
-                {!isLoaded || !isSignedIn ? null : (
-                  <Link
-                    href='/my-courses'
-                    className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50'
-                  >
-                    Moje kursy
-                  </Link>
-                )}
               </div>
               <div className='py-6'>
                 {!isLoaded || !isSignedIn ? (
                   <>
                     <SignInButton>
-                      <button className='-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50'>
+                      <button className='-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-slate-300 hover:bg-gray-50'>
                         Zaloguj się
                       </button>
                     </SignInButton>
                     <SignUpButton>
-                      <button className='-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50'>
+                      <button className='-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-slate-300 hover:bg-gray-50'>
                         Zarejestruj się
                       </button>
                     </SignUpButton>
