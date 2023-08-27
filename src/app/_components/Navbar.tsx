@@ -6,10 +6,11 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { useEffect, useState, type ReactElement } from "react";
+import { SVGProps, useEffect, useState, type ReactElement } from "react";
 import { navigation, type Navigation } from "../_data/navigation";
+import { SVGLogo } from "./SVGLogo";
 
-export function Navbar(): ReactElement {
+export function Navbar(props: SVGProps<SVGSVGElement>): ReactElement {
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const [navbarStyle, setNavbarStyle] = useState<string>("fixed");
   const { isLoaded, isSignedIn } = useUser();
@@ -39,25 +40,19 @@ export function Navbar(): ReactElement {
           stiffness: 200,
           damping: 20,
         }}
-        className='mx-auto max-w-7xl flex items-center justify-between h-16 lg:px-8'
+        className='mx-auto max-w-7xl flex items-center justify-between h-16 px-6 lg:px-8'
         aria-label='Global'
       >
         <div className='flex lg:flex-1'>
           <Link href='/' className='-m-1.5 p-1.5'>
             <span className='sr-only'>Dawid Grabowski - GrabIT</span>
-            {/* <Image
-              className='h-10 w-auto'
-              src={logo}
-              alt=''
-              height={500}
-              width={500}
-            /> */}
+            <SVGLogo className='h-6 w-auto' />
           </Link>
         </div>
         <div className='flex lg:hidden'>
           <button
             type='button'
-            className='-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-slate-100'
+            className='inline-flex items-center justify-center rounded-md text-indigo-800'
             onClick={() => setMobileMenuOpen(true)}
           >
             <span className='sr-only'>Otwórz menu główne</span>
@@ -110,19 +105,13 @@ export function Navbar(): ReactElement {
         <div className='fixed inset-0 z-50' />
         <Dialog.Panel className='fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10'>
           <div className='flex items-center justify-between'>
-            <Link href='/' className='-m-1.5 p-1.5'>
+            <Link href='/'>
               <span className='sr-only'>Dawid Grabowski - GrabIT</span>
-              {/* <Image
-                className='h-12 w-auto'
-                src={logo}
-                alt=''
-                height={500}
-                width={500}
-              /> */}
+              <SVGLogo className='h-8 w-auto' />
             </Link>
             <button
               type='button'
-              className='-m-2.5 rounded-md p-2.5 text-gray-700'
+              className='rounded-md p-2.5 text-gray-700'
               onClick={() => setMobileMenuOpen(false)}
             >
               <span className='sr-only'>Zamknij menu</span>

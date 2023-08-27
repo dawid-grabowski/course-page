@@ -76,7 +76,7 @@ export function Contact(): ReactElement {
         damping: 20,
       }}
       viewport={{ once: true }}
-      className='isolate bg-neutral-900 px-6 py-24 sm:py-32 lg:px-8'
+      className='bg-neutral-900 px-6 py-24 sm:py-32 lg:px-8'
       id='contact'
     >
       <div className='mx-auto max-w-xl lg:max-w-4xl'>
