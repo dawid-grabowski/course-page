@@ -1,33 +1,18 @@
 "use client";
 
 import { SignInButton, SignUpButton, UserButton, useUser } from "@clerk/nextjs";
-import clsx from "clsx";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { SVGProps, useEffect, useState, type ReactElement } from "react";
+import { SVGProps, useState, type ReactElement } from "react";
 import { navigation, type Navigation } from "../_data/navigation";
 import { SVGLogo } from "./SVGLogo";
 
 export function Navbar(props: SVGProps<SVGSVGElement>): ReactElement {
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
-  const [navbarStyle, setNavbarStyle] = useState<string>("fixed");
   const { isLoaded, isSignedIn } = useUser();
 
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    window.location.pathname === "/register"
-      ? setNavbarStyle("fixed")
-      : setNavbarStyle("sticky");
-  }, []);
-
   return (
-    <header
-      className={clsx(
-        navbarStyle === "fixed" ? "sticky" : "fixed",
-        "inset-x-0 top-0 z-50 backdrop-filter backdrop-blur-lg"
-      )}
-    >
+    <header className='fixed inset-x-0 top-0 z-50 backdrop-filter backdrop-blur-lg'>
       <motion.nav
         initial={{ y: 10, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
