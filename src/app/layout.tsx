@@ -6,6 +6,7 @@ import { Inter } from "next/font/google";
 import Script from "next/script";
 import { Footer } from "./_components/Footer";
 import { Navbar } from "./_components/Navbar";
+import { ProgressBar } from "./_components/ProgressBar";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -59,6 +60,7 @@ export default function RootLayout({
         </head>
         <body className={clsx(inter.className, "relative overflow-x-hidden")}>
           <Navbar />
+          <ProgressBar />
           <Script
             src='https://app.easy.tools/coffees/scripts/191ab6e973cd40a7b02fc1d9244dad7b.js'
             strategy='lazyOnload'
