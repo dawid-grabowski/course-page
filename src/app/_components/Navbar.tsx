@@ -1,8 +1,6 @@
 "use client";
 
 import { SignInButton, SignUpButton, UserButton, useUser } from "@clerk/nextjs";
-import { Dialog } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -21,8 +19,6 @@ export function Navbar(props: SVGProps<SVGSVGElement>): ReactElement {
     window.location.pathname === "/register"
       ? setNavbarStyle("fixed")
       : setNavbarStyle("sticky");
-
-    console.log(window.location.pathname);
   }, []);
 
   return (
@@ -56,7 +52,9 @@ export function Navbar(props: SVGProps<SVGSVGElement>): ReactElement {
             onClick={() => setMobileMenuOpen(true)}
           >
             <span className='sr-only'>Otwórz menu główne</span>
-            <Bars3Icon className='h-6 w-6' aria-hidden='true' />
+            {/* <MenuButton
+              toggle={() => setMobileMenuOpen((prevState) => !prevState)}
+            /> */}
           </button>
         </div>
         <div className='hidden lg:flex lg:gap-x-12'>
@@ -96,64 +94,6 @@ export function Navbar(props: SVGProps<SVGSVGElement>): ReactElement {
           )}
         </div>
       </motion.nav>
-      <Dialog
-        as='div'
-        className='lg:hidden'
-        open={mobileMenuOpen}
-        onClose={setMobileMenuOpen}
-      >
-        <div className='fixed inset-0 z-50' />
-        <Dialog.Panel className='fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10'>
-          <div className='flex items-center justify-between'>
-            <Link href='/'>
-              <span className='sr-only'>Dawid Grabowski - GrabIT</span>
-              <SVGLogo className='h-8 w-auto' />
-            </Link>
-            <button
-              type='button'
-              className='rounded-md p-2.5 text-gray-700'
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              <span className='sr-only'>Zamknij menu</span>
-              <XMarkIcon className='h-6 w-6' aria-hidden='true' />
-            </button>
-          </div>
-          <div className='mt-6 flow-root'>
-            <div className='-my-6 divide-y divide-gray-500/10'>
-              <div className='space-y-2 py-6'>
-                {navigation.map((item: Navigation) => (
-                  <Link
-                    key={item.id}
-                    href={item.href}
-                    target={item.target}
-                    className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-slate-300 hover:bg-gray-50'
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
-              <div className='py-6'>
-                {!isLoaded || !isSignedIn ? (
-                  <>
-                    <SignInButton>
-                      <button className='-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-slate-300 hover:bg-gray-50'>
-                        Zaloguj się
-                      </button>
-                    </SignInButton>
-                    <SignUpButton>
-                      <button className='-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-slate-300 hover:bg-gray-50'>
-                        Zarejestruj się
-                      </button>
-                    </SignUpButton>
-                  </>
-                ) : (
-                  <UserButton />
-                )}
-              </div>
-            </div>
-          </div>
-        </Dialog.Panel>
-      </Dialog>
     </header>
   );
 }
