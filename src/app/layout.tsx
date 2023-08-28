@@ -56,7 +56,6 @@ export default function RootLayout({
             color='#2563eb'
           />
           <meta name='msapplication-TileColor' content='#ffffff' />
-          <meta name='theme-color' content='#ffffff' />
           <meta name='theme-color' content='#171717' />
         </head>
         <body className={clsx(inter.className, "relative overflow-x-hidden")}>
