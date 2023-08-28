@@ -20,18 +20,18 @@ export function CTA(): ReactElement {
       id='cta'
     >
       <div className='px-6 py-24 sm:px-6 sm:py-32 lg:px-8'>
-        <div className='mx-auto max-w-2xl text-center'>
+        <div className='mx-auto max-w-2xl text-left lg:text-center'>
           <h2 className='text-3xl font-bold tracking-tight text-zinc-200 sm:text-4xl'>
             Uzupełniaj swoją wiedzę na bierząco
             <br />
             Wybierz kurs dla siebie już dziś
           </h2>
-          <p className='mx-auto mt-6 max-w-xl text-lg leading-8 text-zinc-400'>
+          <p className='lg:mx-auto mt-6 max-w-xl text-lg leading-8 text-zinc-400'>
             Najważniejsze informacje, które musisz wiedzieć, aby zagłębić się w
             temat programowania. Materiały są przygotowane w taki sposób, aby
             były zrozumiałe i przyjemne do oglądania jednocześnie.
           </p>
-          <div className='mt-10 flex items-center justify-center gap-x-6'>
+          <div className='mt-10 flex items-center justify-left lg:justify-center gap-x-6'>
             <SignUpButton>
               <span className='cursor-pointer rounded-md bg-indigo-700 px-3.5 py-2.5 text-sm font-semibold text-zinc-200 shadow-sm hover:bg-indigo-600 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white'>
                 Dołącz do platformy
