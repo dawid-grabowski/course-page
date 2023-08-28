@@ -3,6 +3,8 @@ import { ClerkProvider } from "@clerk/nextjs";
 import clsx from "clsx";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Script from "next/script";
+import { Footer } from "./_components/Footer";
 import { Navbar } from "./_components/Navbar";
 import "./globals.css";
 
@@ -55,9 +57,14 @@ export default function RootLayout({
           <meta name='msapplication-TileColor' content='#ffffff' />
           <meta name='theme-color' content='#ffffff' />
         </head>
-        <body className={clsx(inter.className, "overflow-x-hidden")}>
+        <body className={clsx(inter.className, "relative overflow-x-hidden")}>
           <Navbar />
+          <Script
+            src='https://app.easy.tools/coffees/scripts/191ab6e973cd40a7b02fc1d9244dad7b.js'
+            strategy='lazyOnload'
+          />
           {children}
+          <Footer />
         </body>
       </html>
     </ClerkProvider>

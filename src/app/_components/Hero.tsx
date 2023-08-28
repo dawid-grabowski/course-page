@@ -124,6 +124,7 @@ export function Hero(): ReactElement {
               alt='Photo of Dawid Grabowski - Frontend Developer'
               src={mainPhoto}
               className='mx-auto w-[22.875rem] max-w-full drop-shadow-xa rounded-3xl shadow-2xl'
+              priority
             />
           </motion.div>
         </div>

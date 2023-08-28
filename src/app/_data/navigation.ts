@@ -9,10 +9,9 @@ export type Navigation = {
 
 export const navigation: Navigation[] = [
   { id: 1, name: "O mnie", href: "/", target: "_self" },
-  { id: 2, name: "Kursy", href: "/", target: "_self" },
-  { id: 3, name: "Projekty", href: "/", target: "_self" },
+  { id: 2, name: "Kursy", href: "/courses", target: "_self" },
   {
-    id: 4,
+    id: 3,
     name: "Konsultacje",
     href: "https://app.zencal.io/u/grabowskidawid",
     target: "_blank",

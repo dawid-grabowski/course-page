@@ -8,7 +8,11 @@ type Props = {
   children: ReactNode;
 };
 
-export function StatusAlert({ title, status, children }: Props): ReactElement {
+export async function StatusAlert({
+  title,
+  status,
+  children,
+}: Props): Promise<ReactElement> {
   const isSuccess = status === "success";
 
   return (
