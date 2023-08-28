@@ -2,8 +2,8 @@
 
 import { SignUpButton } from "@clerk/nextjs";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { type ReactElement } from "react";
-import { Link as ScrollLink } from "react-scroll";
 
 export function CTA(): ReactElement {
   return (
@@ -37,12 +37,12 @@ export function CTA(): ReactElement {
                 Dołącz do platformy
               </span>
             </SignUpButton>
-            <ScrollLink
-              to='/courses'
+            <Link
+              href='/courses'
               className='cursor-pointer text-sm font-semibold leading-6 text-zinc-200 hover:text-zinc-300 transition-colors'
             >
               Zobacz dostępne kursy <span aria-hidden='true'>→</span>
-            </ScrollLink>
+            </Link>
           </div>
         </div>
       </div>
