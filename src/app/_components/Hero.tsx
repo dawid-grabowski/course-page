@@ -1,5 +1,6 @@
 "use client";
 
+import { SignInButton } from "@clerk/nextjs";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useId, type ReactElement } from "react";
@@ -73,12 +74,11 @@ export function Hero(): ReactElement {
       przekazywać swoją wiedzę innym.
     </p>,
     <div key={id + Math.random()} className='mt-10 flex items-center gap-x-6'>
-      <ScrollLink
-        to='courses'
-        className='cursor-pointer rounded-md bg-indigo-700 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-600 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
-      >
-        Zobacz więcej
-      </ScrollLink>
+      <SignInButton>
+        <button className='cursor-pointer rounded-md bg-indigo-700 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-600 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'>
+          Zaloguj się
+        </button>
+      </SignInButton>
       <ScrollLink
         to='contact'
         className='hidden sm:block cursor-pointer text-sm font-semibold leading-6 text-zinc-200 hover:text-zinc-300 transition-colors'
