@@ -57,14 +57,12 @@ export function Navbar(): ReactElement {
         <div className='hidden lg:flex lg:flex-1 gap-3 lg:justify-end'>
           {!isLoaded || !isSignedIn ? (
             <>
-              <SignInButton>
-                <button
-                  type='button'
-                  className='transition-colors rounded-md bg-indigo-700 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
-                >
-                  Logowanie
-                </button>
-              </SignInButton>
+              <Link
+                href='/login'
+                className='transition-colors rounded-md bg-indigo-700 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+              >
+                Logowanie
+              </Link>
               <SignUpButton>
                 <button
                   type='button'
@@ -114,11 +112,12 @@ export function Navbar(): ReactElement {
                 ))}
               </div>
               <div className='py-6'>
-                <SignInButton>
-                  <span className='-mx-3 cursor-pointer block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-zinc-200 hover:bg-neutral-800 transition-colors'>
-                    Zaloguj się
-                  </span>
-                </SignInButton>
+                <Link
+                  href='/login'
+                  className='-mx-3 cursor-pointer block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-zinc-200 hover:bg-neutral-800 transition-colors'
+                >
+                  Zaloguj się
+                </Link>
               </div>
             </div>
           </div>
