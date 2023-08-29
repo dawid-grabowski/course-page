@@ -53,6 +53,14 @@ export function Navbar(): ReactElement {
               {item.name}
             </Link>
           ))}
+          {!isLoaded || !isSignedIn ? null : (
+            <Link
+              href='/my-courses'
+              className='transition-colors cursor-pointer font-medium text-sm leading-6 text-slate-200 hover:text-slate-300'
+            >
+              Moje kursy
+            </Link>
+          )}
         </div>
         <div className='hidden lg:flex lg:flex-1 gap-3 lg:justify-end'>
           {!isLoaded || !isSignedIn ? (
@@ -111,6 +119,14 @@ export function Navbar(): ReactElement {
                     {item.name}
                   </a>
                 ))}
+                {!isLoaded || !isSignedIn ? null : (
+                  <Link
+                    href='/my-courses'
+                    className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-zinc-200 hover:bg-neutral-800 transition-colors'
+                  >
+                    Moje kursy
+                  </Link>
+                )}
               </div>
               <div className='py-6'>
                 {!isLoaded || !isSignedIn ? (
