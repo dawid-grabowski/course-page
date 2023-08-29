@@ -122,6 +122,7 @@ export function Navbar(): ReactElement {
                 {!isLoaded || !isSignedIn ? null : (
                   <Link
                     href='/my-courses'
+                    onClick={() => setMobileMenuOpen(false)}
                     className='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-zinc-200 hover:bg-neutral-800 transition-colors'
                   >
                     Moje kursy
