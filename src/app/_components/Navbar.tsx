@@ -112,12 +112,16 @@ export function Navbar(): ReactElement {
                 ))}
               </div>
               <div className='py-6'>
-                <Link
-                  href='/login'
-                  className='-mx-3 cursor-pointer block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-zinc-200 hover:bg-neutral-800 transition-colors'
-                >
-                  Zaloguj się
-                </Link>
+                {!isLoaded || !isSignedIn ? (
+                  <Link
+                    href='/login'
+                    className='-mx-3 cursor-pointer block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-zinc-200 hover:bg-neutral-800 transition-colors'
+                  >
+                    Zaloguj się
+                  </Link>
+                ) : (
+                  <UserButton />
+                )}
               </div>
             </div>
           </div>
