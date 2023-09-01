@@ -74,7 +74,13 @@ export function Footer(): ReactElement {
           ))}
         </div>
         <p className="mt-10 text-center text-xs leading-5 text-zinc-600">
-          &copy; 2023 GrabIT - Wszelkie prawa zastrzeżone.
+          &copy; 2023 GrabIT - Wszelkie prawa zastrzeżone. |{" "}
+          <Link
+            href={GLOBAL_CONSTS.PRIVACY_POLICY_URL}
+            className="hover:text-zinc-400 transition-colors"
+          >
+            Polityka prywatności
+          </Link>
         </p>
         <div className="mt-10 text-xs leading-5 text-zinc-600">
           <Link href={GLOBAL_CONSTS.PRIVACY_POLICY_URL}></Link>
