@@ -1,5 +1,6 @@
 import { plPL } from "@clerk/localizations";
 import { ClerkProvider } from "@clerk/nextjs";
+import { dark } from "@clerk/themes";
 import clsx from "clsx";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -26,6 +27,7 @@ export default function RootLayout({
     <ClerkProvider
       localization={plPL}
       appearance={{
+        baseTheme: dark,
         variables: {
           colorPrimary: "#4f46e5",
         },
